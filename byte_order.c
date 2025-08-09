@@ -25,20 +25,26 @@ void show_pointer(void *x)
 
 int main()
 {
-    int ival = 12345;
-    float fval = (float)ival;
-    int *pval = &ival;
+    // int ival = 12345;
+    // float fval = (float)ival;
+    // int *pval = &ival;
 
-    scanf("%d", &ival);
+    // scanf("%d", &ival);
 
-    printf("int:      ");
-    show_int(ival);
+    // printf("int:      ");
+    // show_int(ival);
 
-    printf("float:    ");
-    show_float(fval);
+    // printf("float:    ");
+    // show_float(fval);
 
-    printf("pointer:  ");
-    show_pointer(pval);
+    // printf("pointer:  ");
+    // show_pointer(pval);
+
+    short x = 12345;
+    short mx = -x;
+
+    show_bytes((byte_pointer)&x, sizeof(short));
+    show_bytes((byte_pointer)&mx, sizeof(short));
 
     return 0;
 }
