@@ -3,7 +3,7 @@
 int my_strlen(char *cp)
 {
     int len = 0;
-    while (*cp != '\0`')
+    while (*cp != '\0')
     {
         cp++;
         len++;
