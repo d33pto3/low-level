@@ -1,6 +1,6 @@
 // copy a string (no strcpy)
 
-void my_strcpy(char *dest, char *src)
+void my_strcpy(char *dest, const char *src)
 {
     // using while loop
     while (*src != '\0')
@@ -22,7 +22,7 @@ void my_strcpy(char *dest, char *src)
 #include <stdio.h>
 int main()
 {
-    char mystr[] = "abc";
+    char mystr[] = "abcd";
 
     char cpstr[sizeof(mystr)]; // enough for mystr[] + '/0'
 
