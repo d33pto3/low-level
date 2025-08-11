@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 void remove_vowels(char *str)
 {
