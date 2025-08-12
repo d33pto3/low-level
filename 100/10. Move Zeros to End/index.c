@@ -1,22 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void mtr(int *ptr, size_t size)
+// Solution 1: using two pointer pointer(literally)
+void mzte_using_tpp(int *ptr, size_t size)
 {
+    // read_ptr → scans every element in the array from start to end.
+    // write_ptr → tracks where the next non-zero element should be placed.
+    int *write_ptr = ptr, *read_ptr = ptr;
+
+    for (size_t i = 0; i < size; i++)
+    {
+        if (*read_ptr != 0)
+        {
+            // *write_ptr++ → move the pointer forward
+            // (*write_ptr)++ → increase the value at that location
+            *write_ptr++ = *read_ptr;
+        }
+        read_ptr = read_ptr + 1;
+    }
+
     int *end = ptr + size;
 
-    while (ptr != end)
+    while (write_ptr != end)
     {
-        int temp = *ptr;
-        *ptr = *ptr + 1;
-        ptr++;
+        *write_ptr = 0;
+        write_ptr = write_ptr + 1;
+    }
+}
+
+// Solution 2: using two pointers
+void move_zeroes(int arr[], int size)
+{
+    int write_idx = 0;
+
+    for (int read_idx = 0; read_idx < size; read_idx++)
+    {
+        if (arr[read_idx] != 0)
+        {
+            arr[write_idx++] = arr[read_idx];
+        }
+    }
+
+    while (write_idx < size)
+    {
+        arr[write_idx++] = 0;
     }
 }
 
 int main()
 {
     // code
-    int *ptr = malloc(5 * sizeof(int));
+    size_t size = 5;
+    int *ptr = malloc(size * sizeof(int));
 
     if (ptr == NULL)
     {
@@ -24,17 +59,21 @@ int main()
         exit(0);
     }
 
-    for (int i = 0; i < 5; i++)
+    for (size_t i = 0; i < 5; i++)
     {
         scanf("%d", &ptr[i]);
     }
 
-    mtr(ptr, 5);
+    // mzte_using_tpp(ptr, size);
+    move_zeroes(ptr, (int)size);
 
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     printf("%d ", ptr[i]);
-    // }
+    for (size_t i = 0; i < 5; i++)
+    {
+        printf("%d ", ptr[i]);
+    }
+    printf("\n");
+
+    free(ptr);
 
     return 0;
 }
