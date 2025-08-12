@@ -9,7 +9,6 @@ void mtr(int *ptr, size_t size)
     {
         int temp = *ptr;
         *ptr = *ptr + 1;
-        printf("%d", *ptr);
         ptr++;
     }
 }
