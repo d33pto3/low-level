@@ -31,5 +31,8 @@ int main()
         }
     }
 
+    free(freq);
+    free(arr);
+
     return 0;
 }
