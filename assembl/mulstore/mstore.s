@@ -1,4 +1,5 @@
 	.file	"mstore.c"
+	.intel_syntax noprefix
 	.text
 	.globl	multstore
 	.type	multstore, @function
@@ -6,13 +7,13 @@ multstore:
 .LFB0:
 	.cfi_startproc
 	endbr64
-	pushq	%rbx
+	push	rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdx, %rbx
+	mov	rbx, rdx
 	call	mult2@PLT
-	movq	%rax, (%rbx)
-	popq	%rbx
+	mov	QWORD PTR [rbx], rax
+	pop	rbx
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
