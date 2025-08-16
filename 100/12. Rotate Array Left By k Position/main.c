@@ -1,24 +1,42 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 // fn prototype/declaration
+// 1. rotate one by one
 void rotate_one_by_one(int arr[], int n, int k);
 
-// Rotate array using reversal algorithm
-void rotate_array_reversal_algo(int arr[], int size, int k)
-{
-}
+// 2. Using temporary array
+
+// 3. Using reversal algorithm
+void reverse(int *, int, int);
 
 int main()
 {
-    // code
-    int arr[7] = {10, 20, 30, 40, 50, 60, 70};
+    int *arr = (int *)malloc(10 * sizeof(int));
 
-    rotate_one_by_one(arr, 7, 7);
+    int n, k;
 
-    for (int i = 0; i < 7; i++)
+    printf("Enter array length(must be within 10):\n");
+    scanf("%d", &n);
+    printf("Enter rotate position:\n");
+    scanf("%d", &k);
+
+    printf("Enter numbers:\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    reverse(arr, 0, k - 1);
+    reverse(arr, k, n - 1);
+    reverse(arr, 0, n - 1);
+
+    for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
 
     printf("\n");
+
+    free(arr);
 
     return 0;
 }
