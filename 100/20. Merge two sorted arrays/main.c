@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int *merge_array(int *ar1, int *ar2)
+int *merge_array(int *ar1, int *ar2, int len1, int len2)
 {
-    int len1 = (sizeof(ar1) / sizeof(int));
-    int len2 = (sizeof(ar2) / sizeof(int));
-
     int len = len1 + len2;
 
     int *ans = malloc(len * sizeof(int));
@@ -24,7 +21,7 @@ int *merge_array(int *ar1, int *ar2)
             }
             else
             {
-                ans[k] = ar1[j];
+                ans[k] = ar2[j];
                 j++;
                 continue;
             }
@@ -47,24 +44,36 @@ int *merge_array(int *ar1, int *ar2)
 int main()
 {
     // code
-    int ar1[3], ar2[3];
+    int n, m;
+    printf("Enter first array length: ");
+    scanf("%d", &n);
+    printf("Enter second array length: ");
+    scanf("%d", &m);
 
-    for (int i = 0; i < 3; i++)
+    int *ar1 = malloc(n * sizeof(int));
+    int *ar2 = malloc(m * sizeof(int));
+
+    printf("First array:\n");
+    for (int i = 0; i < n; i++)
     {
-        ar1[i] = i * 2 + 1;
+        scanf("%d", &ar1[i]);
     }
 
-    for (int i = 0; i < 3; i++)
+    printf("Second array:\n");
+    for (int i = 0; i < m; i++)
     {
-        ar2[i] = i * 2 + 2;
+        scanf("%d", &ar2[i]);
     }
 
-    int *ans = merge_array(ar1, ar2);
+    printf("Sorted array:\n");
+    int *ans = merge_array(ar1, ar2, n, m);
 
-    for (int i = 0; i < 6; i++)
+    for (int i = 0; i < (n + m); i++)
     {
         printf("%d ", ans[i]);
     }
+
+    printf("\n");
 
     return 0;
 }
