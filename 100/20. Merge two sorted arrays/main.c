@@ -7,6 +7,12 @@ int *merge_array(int *ar1, int *ar2, int len1, int len2)
 
     int *ans = malloc(len * sizeof(int));
 
+    if (ans == NULL)
+    {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(1);
+    }
+
     int i = 0, j = 0;
 
     for (int k = 0; k < len; k++)
@@ -17,13 +23,11 @@ int *merge_array(int *ar1, int *ar2, int len1, int len2)
             {
                 ans[k] = ar1[i];
                 i++;
-                continue;
             }
             else
             {
                 ans[k] = ar2[j];
                 j++;
-                continue;
             }
         }
         else if (i < len1)
@@ -74,6 +78,10 @@ int main()
     }
 
     printf("\n");
+
+    free(ar1);
+    free(ar2);
+    free(ans);
 
     return 0;
 }
