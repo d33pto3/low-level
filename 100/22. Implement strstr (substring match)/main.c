@@ -3,41 +3,29 @@
 
 char *strs(const char *s1, const char *s2)
 {
-    int j = 0;
-    char *p = NULL;
-    for (int i = 0; i < strlen(s1); i++)
-    {
-        if (p == NULL)
-        {
-            if (s1[i] == s2[j])
-            {
-                p = (char *)&s1[i];
-                j++;
-                continue;
-            }
-        }
-        else
-        {
-            if (s1[i] != s2[j])
-            {
-                p = NULL;
-                j = 0;
-            }
-        }
+    if (!*s2)
+        return (char *)s1;
 
-        if (s1[i] == s2[j])
+    for (int i = 0; s1[i]; i++)
+    {
+        int j = 0;
+        while (s1[i + j] && s2[j] && s1[i + j] == s2[j])
         {
             j++;
         }
-    }
 
-    return p;
+        if (!s2[j])
+        {
+            return (char *)&s1[i];
+        }
+    }
+    return NULL;
 }
 
 int main()
 {
     char s1[] = "toebirama";
-    char s2[] = "ram";
+    char s2[] = "raman";
     char *p;
 
     p = strs(s1, s2);
