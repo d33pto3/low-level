@@ -1,6 +1,7 @@
 // AI generated
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 struct Node
 {
@@ -29,12 +30,38 @@ int main()
 
     struct Node *first = createNode(10);
     struct Node *second = createNode(20);
+    struct Node *third = createNode(30);
+    struct Node *fourth = createNode(40);
 
     first->next = second;
+    second->next = third;
+    third->next = fourth;
 
     head = first;
 
-    printf("%d -> %d\n", head->data, head->next->data);
+    struct Node *curr = head;
+    struct Node *prev = NULL;
+    struct Node *next = NULL;
+
+    while (curr != NULL)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    head = prev;
+
+    struct Node *tmp = head;
+
+    while (tmp != NULL)
+    {
+        printf("%d ", tmp->data);
+        tmp = tmp->next;
+    }
+
+    printf("\n");
 
     return 0;
 }
