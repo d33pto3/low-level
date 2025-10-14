@@ -24,6 +24,17 @@ struct Node *createNode(int value)
     return newNode;
 }
 
+void freeList(struct Node *head)
+{
+    struct Node *tmp;
+    while (head != NULL)
+    {
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+
 int main()
 {
     struct Node *head = NULL;
@@ -62,6 +73,8 @@ int main()
     }
 
     printf("\n");
+
+    freeList(head);
 
     return 0;
 }
